@@ -34,7 +34,7 @@ function connect() {
   //options.acceptAllDevices = true;
   options.filters = [
     {services: [LED_SERVICE_UUID]},
-    // {namePrefix: "BBC micro:bit"}
+    {namePrefix: "BBC micro:bit"}
   ];
 
   navigator.bluetooth.requestDevice(options)
