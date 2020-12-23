@@ -11,7 +11,7 @@
 <input id="message" value="hello" />
 <button id="send">送信</button>
 
-hoge
+foo
   
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.3.0/d3.min.js"></script>
 <script>
@@ -33,6 +33,8 @@ function connect() {
 
   //options.acceptAllDevices = true;
   options.filters = [
+    {services: [LED_SERVICE_UUID]},
+    // {namePrefix: "BBC micro:bit"}
   ];
 
   navigator.bluetooth.requestDevice(options)
