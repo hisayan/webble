@@ -127,7 +127,7 @@ function onStartButtonClick() {
 
 
 function onStopButtonClick() {
-  if (txCharacteristic) {
+  if (dataCharacteristic) {
     log('Stopping notifications...');
     try {
       dataCharacteristic.removeEventListener('characteristicvaluechanged', handleNotifications);
@@ -180,7 +180,7 @@ function handleNotifications(event) {
 //   console.log(value);
 //   console.log(value.byteLength);
   result = ''
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 3; i++) {
     result += value.getInt16(i);
     result += ',';
   }
