@@ -179,9 +179,9 @@ function handleNotifications(event) {
   const value = event.target.value;
 
   // range is -1024 : +1024 ?
-  const x = value.getInt16(0);
-  const y = value.getInt16(1);
-  const z = value.getInt16(2);
+  const x = value.getUint16(0);
+  const y = value.getUint16(1);
+  const z = value.getUint16(2);
   
   const x2 = x / 1000;
   const y2 = y / 1000;
