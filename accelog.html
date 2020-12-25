@@ -173,13 +173,16 @@ function onSendButtonClick() {
   }
 }
 
-
+// need lowpass filter
+// https://lancaster-university.github.io/microbit-docs/ble/accelerometer-service/
 function handleNotifications(event) {
   const value = event.target.value;
 
+  // range is -1024 : +1024 ?
   const x = value.getInt16(0);
   const y = value.getInt16(1);
   const z = value.getInt16(2);
+  
   const x2 = x / 1000;
   const y2 = y / 1000;
   const z2 = z / 1000;
@@ -190,7 +193,7 @@ function handleNotifications(event) {
   roll = -1 * roll * (180.0 / Math.PI);
   
   console.log(x, y, z, x2, y2, z2, pitch, roll);
-  // // range is -1024 : +1024 ? 2048 ?
+  
 //   console.log(roll);
 //   log(x + ',' + y + ',' + z + ',' + pitch + ',' + roll);
 }
