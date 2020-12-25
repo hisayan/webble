@@ -112,7 +112,7 @@ function onStartButtonClick() {
         .then(characteristic => {
           dataCharacteristic = characteristic;
           log('Data charactersitic obtained');
-          return txCharacteristic.startNotifications().then(_ => {
+          return dataCharacteristic.startNotifications().then(_ => {
             log('Notifications started');
             dataCharacteristic.addEventListener('characteristicvaluechanged', handleNotifications);
           });
