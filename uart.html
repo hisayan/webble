@@ -49,9 +49,9 @@ pre {
 
 <script>
 
-var NUS_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
-var NUS_TX_CHARACTERISTIC_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
-var NUS_RX_CHARACTERISTIC_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
+var UART_SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
+var UART_TX_CHARACTERISTIC_UUID = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
+var UART_RX_CHARACTERISTIC_UUID = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
 
 var bluetoothDevice = null;
 var txCharacteristic = null;
@@ -82,16 +82,16 @@ function onDisconnected(event) {
 }
 
 function onStartButtonClick() {
-  let serviceUuid = NUS_SERVICE_UUID;
-  let tx_characteristicUuid = NUS_TX_CHARACTERISTIC_UUID;
-  let rx_characteristicUuid = NUS_RX_CHARACTERISTIC_UUID;
+  let serviceUuid = UART_SERVICE_UUID;
+  let tx_characteristicUuid = UART_TX_CHARACTERISTIC_UUID;
+  let rx_characteristicUuid = UART_RX_CHARACTERISTIC_UUID;
 
   log('Requesting Bluetooth Device...');
 //   navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
   
   uBitDevice = navigator.bluetooth.requestDevice({
       filters: [{ namePrefix: "BBC micro:bit" }],
-      optionalServices: [NUS_SERVICE_UUID]
+      optionalServices: [UART_SERVICE_UUID, UART_TX_CHARACTERISTIC_UUID, UART_RX_CHARACTERISTIC_UUID]
     })
   .then(device => {
     bluetoothDevice = device;
@@ -107,15 +107,15 @@ function onStartButtonClick() {
   .then(service => {
     log('Getting Characteristics...');
     return Promise.all([
-//       service.getCharacteristic(tx_characteristicUuid)
-//         .then(characteristic => {
-//           txCharacteristic = characteristic;
-//           log('Tx charactersitic obtained');
-//           return txCharacteristic.startNotifications().then(_ => {
-//             log('Notifications started');
-//             txCharacteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-//           });
-//         }),
+      service.getCharacteristic(tx_characteristicUuid)
+        .then(characteristic => {
+          txCharacteristic = characteristic;
+          log('Tx charactersitic obtained');
+          return txCharacteristic.startNotifications().then(_ => {
+            log('Notifications started');
+            txCharacteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+          });
+        }),
       service.getCharacteristic(rx_characteristicUuid)
         .then(rx_characteristic => {
           rxCharacteristic = rx_characteristic;
