@@ -177,12 +177,13 @@ function onSendButtonClick() {
 function handleNotifications(event) {
   let value = event.target.value;
 
-//   result = ''
-//   for (let i = 0; i < value.byteLength; i++) {
-//     result += String.fromCharCode(value.getUint8(i));
-//   }
+  result = ''
+  for (let i = 0; i < value.byteLength; i++) {
+    result += value.getInt32(i));
+    result += ',';
+  }
 
-  log('> ' + value);
+  log('> ' + result);
 }
 
 
