@@ -87,7 +87,12 @@ function onStartButtonClick() {
   let rx_characteristicUuid = NUS_RX_CHARACTERISTIC_UUID;
 
   log('Requesting Bluetooth Device...');
-  navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
+//   navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
+  
+  uBitDevice = await navigator.bluetooth.requestDevice({
+      filters: [{ namePrefix: "BBC micro:bit" }],
+      optionalServices: [NUS_SERVICE_UUID]
+    });
   .then(device => {
     bluetoothDevice = device;
     bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
