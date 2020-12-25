@@ -53,6 +53,9 @@ var ACCELEROMETER_SERVICE_UUID               = "e95d0753-251d-470a-a062-fa1922df
 var ACCELEROMETER_DATA_CHARACTERISTIC_UUID   = "e95dca4b-251d-470a-a062-fa1922dfa9a8";
 var ACCELEROMETER_PERIOD_CHARACTERISTIC_UUID = "e95dfb24-251d-470a-a062-fa1922dfa9a8";
   
+
+  
+  
 var bluetoothDevice = null;
 var dataCharacteristic = null;
 var periodCharacteristic = null;
@@ -86,12 +89,11 @@ function onStartButtonClick() {
   let periodCharacteristicUuid = ACCELEROMETER_PERIOD_CHARACTERISTIC_UUID;
 
   log('Requesting Bluetooth Device...');
-  navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
+//   navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
   
-//  uBitDevice = navigator.bluetooth.requestDevice({
-//     filters: [{ namePrefix: "BBC micro:bit", services: [serviceUuid]}],
-//       optionalServices: [UART_SERVICE_UUID]
-//    })
+  uBitDevice = navigator.bluetooth.requestDevice({
+    filters: [{ namePrefix: "BBC micro:bit", services: [serviceUuid]}],
+   })
   .then(device => {
     bluetoothDevice = device;
     bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
