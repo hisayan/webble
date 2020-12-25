@@ -89,7 +89,7 @@ function onStartButtonClick() {
   log('Requesting Bluetooth Device...');
 //   navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
   
-  uBitDevice = await navigator.bluetooth.requestDevice({
+  uBitDevice = navigator.bluetooth.requestDevice({
       filters: [{ namePrefix: "BBC micro:bit" }],
 //       optionalServices: [NUS_SERVICE_UUID]
     });
