@@ -177,8 +177,10 @@ function onSendButtonClick() {
 function handleNotifications(event) {
   let value = event.target.value;
 
+  console.log(value);
+  console.log(value.byteLength);
   result = ''
-  for (let i = 0; i < value.byteLength; i++) {
+  for (let i = 0; i < 2; i++) {
     result += value.getInt32(i);
     result += ',';
   }
