@@ -90,7 +90,7 @@ function onStartButtonClick() {
 //   navigator.bluetooth.requestDevice({filters: [{services: [serviceUuid]}]})
   
   uBitDevice = navigator.bluetooth.requestDevice({
-      filters: [{ namePrefix: "BBC micro:bit", services: [serviceUuid]}],
+      filters: [{ namePrefix: "BBC micro:bit"}, {services: [serviceUuid]}],
 //       optionalServices: [UART_SERVICE_UUID]
     })
   .then(device => {
