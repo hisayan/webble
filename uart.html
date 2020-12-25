@@ -92,7 +92,7 @@ function onStartButtonClick() {
   uBitDevice = navigator.bluetooth.requestDevice({
       filters: [{ namePrefix: "BBC micro:bit" }],
 //       optionalServices: [NUS_SERVICE_UUID]
-    });
+    })
   .then(device => {
     bluetoothDevice = device;
     bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
