@@ -107,20 +107,20 @@ function onStartButtonClick() {
   .then(service => {
     log('Getting Characteristics...');
     return Promise.all([
-      service.getCharacteristic(tx_characteristicUuid)
-        .then(characteristic => {
-          txCharacteristic = characteristic;
-          log('Tx charactersitic obtained');
-          return txCharacteristic.startNotifications().then(_ => {
-            log('Notifications started');
-            txCharacteristic.addEventListener('characteristicvaluechanged', handleNotifications);
-          });
-        }),
-//       service.getCharacteristic(rx_characteristicUuid)
-//         .then(rx_characteristic => {
-//           rxCharacteristic = rx_characteristic;
-//           log('Rx charactersitic obtained');
+//       service.getCharacteristic(tx_characteristicUuid)
+//         .then(characteristic => {
+//           txCharacteristic = characteristic;
+//           log('Tx charactersitic obtained');
+//           return txCharacteristic.startNotifications().then(_ => {
+//             log('Notifications started');
+//             txCharacteristic.addEventListener('characteristicvaluechanged', handleNotifications);
+//           });
 //         }),
+      service.getCharacteristic(rx_characteristicUuid)
+        .then(rx_characteristic => {
+          rxCharacteristic = rx_characteristic;
+          log('Rx charactersitic obtained');
+        }),
     ]);
   })
   .catch(error => {
