@@ -180,13 +180,17 @@ function handleNotifications(event) {
   const x = value.getInt16(0);
   const y = value.getInt16(1);
   const z = value.getInt16(2);
-  let pitch = Math.atan(x / Math.sqrt(Math.pow(y, 2) + Math.pow(z, 2)));
-  let roll = Math.atan(y / Math.sqrt(Math.pow(x, 2) + Math.pow(z, 2)));
+  const x2 = x / 1000;
+  const y2 = y / 1000;
+  const z2 = z / 1000;
+  let pitch = Math.atan(x2 / Math.sqrt(Math.pow(y2, 2) + Math.pow(z2, 2)));
+  let roll = Math.atan(y2 / Math.sqrt(Math.pow(x2, 2) + Math.pow(z2, 2)));
   //convert radians into degrees
   pitch = pitch * (180.0 / Math.PI);
   roll = -1 * roll * (180.0 / Math.PI);
   
-  console.log(pitch);
+  console.log(x, y, z, x2, y2, z2, pitch, roll);
+  // // range is -1024 : +1024 ? 2048 ?
 //   console.log(roll);
 //   log(x + ',' + y + ',' + z + ',' + pitch + ',' + roll);
 }
